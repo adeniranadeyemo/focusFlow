@@ -1,0 +1,309 @@
+@import 'tailwindcss';
+
+* {
+  transition: all 0.25s ease-in-out;
+}
+
+.m-xs {
+  margin: var(--space-xs);
+}
+.m-sm {
+  margin: var(--space-sm);
+}
+.m-md {
+  margin: var(--space-md);
+}
+.m-lg {
+  margin: var(--space-lg);
+}
+.m-xl {
+  margin: var(--space-xl);
+}
+
+/* Same pattern for padding */
+.p-xs {
+  padding: var(--space-xs);
+}
+.p-sm {
+  padding: var(--space-sm);
+}
+.p-md {
+  padding: var(--space-md);
+}
+.p-lg {
+  padding: var(--space-lg);
+}
+.p-xl {
+  padding: var(--space-xl);
+}
+
+/* bg-color and text-color */
+.system-color {
+  background-color: var(--color-background-light);
+}
+.dark .system-color {
+  background-color: var(--color-background-dark);
+}
+
+.system-color2 {
+  background-color: var(--color-foreground-light);
+}
+.dark .system-color2 {
+  background-color: var(--color-foreground-dark);
+}
+
+.text-color {
+  color: var(--color-foreground-dark);
+}
+.dark .text-color {
+  color: var(--color-foreground-light);
+}
+
+.text-color-muted {
+  color: var(--color-muted-light);
+}
+.dark .text-color-muted {
+  color: var(--color-muted-dark);
+}
+
+.tabs {
+  color: var(--color-background-dark);
+  background-color: var(--color-muted-dark);
+}
+.dark .tabs {
+  color: var(--color-muted-dark);
+  background-color: var(--color-foreground-dark);
+}
+
+.tabs:hover {
+  color: var(--color-foreground-light);
+  background-color: var(--color-background-dark);
+}
+.dark .tabs:hover {
+  color: var(--color-foreground-dark);
+  background-color: var(--color-foreground-light);
+}
+
+.tabs-active {
+  color: var(--color-foreground-light);
+  background-color: var(--color-brand-light);
+}
+.dark .tabs-active {
+  color: var(--color-foreground-dark);
+  background-color: var(--color-brand-dark);
+}
+
+.text-color-brand {
+  color: var(--color-brand-light);
+}
+.dark .text-color-brand {
+  color: var(--color-brand-dark);
+}
+
+.bg-accent-blue {
+  background-color: var(--color-accent-blue);
+}
+.bg-accent-yellow {
+  background-color: var(--color-accent-yellow);
+}
+.bg-accent-red {
+  background-color: var(--color-accent-red);
+}
+
+/* Font-sizes */
+.text-xxs {
+  font-size: var(--font-size-xxs);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-base {
+  font-size: var(--font-size-base);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+.text-xl {
+  font-size: var(--font-size-xl);
+}
+
+.text-2xl {
+  font-size: var(--font-size-2xl);
+}
+
+.text-3xl {
+  font-size: var(--font-size-3xl);
+}
+
+.text-4xl {
+  font-size: var(--font-size-4xl);
+}
+
+.text-5xl {
+  font-size: var(--font-size-5xl);
+}
+
+.text-6xl {
+  font-size: var(--font-size-6xl);
+}
+
+/* Border */
+.border-radius-sm {
+  border-radius: var(--border-radius-sm);
+}
+
+.border-radius-md {
+  border-radius: var(--border-radius-md);
+}
+
+.border-radius-lg {
+  border-radius: var(--border-radius-lg);
+}
+
+.border-radius-xl {
+  border-radius: var(--border-radius-xl);
+}
+
+.border-radius-2xl {
+  border-radius: var(--border-radius-2xl);
+}
+
+.border-radius-3xl {
+  border-radius: var(--border-radius-3xl);
+}
+
+.border-radius-full {
+  border-radius: var(--border-radius-full);
+}
+
+/* Card */
+/* .card {
+
+} */
+.dark .card {
+  background-color: var(--color-background-dark);
+  color: var(--color-foreground-light);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card-light);
+}
+.dark .shadow-card {
+  box-shadow: var(--shadow-card-dark);
+}
+
+.shadow-hover:hover {
+  box-shadow: var(--shadow-card-hover-light);
+}
+.dark .shadow-hover:hover {
+  box-shadow: var(--shadow-card-hover-dark);
+}
+
+.shadow-active:active {
+  box-shadow: var(--shadow-card-active-light);
+}
+.dark .shadow-active:active {
+  box-shadow: var(--shadow-card-active-dark);
+}
+
+/* Font family */
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-gothic {
+  font-family: var(--font-gothic);
+}
+
+/* Font-weight */
+.font-thin {
+  font-weight: 100;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+/* Line Height & Letter Spacing */
+.leading-tight {
+  line-height: 1.25;
+}
+
+.leading-snug {
+  line-height: 1.375;
+}
+
+.leading-normal {
+  line-height: 1.5;
+}
+
+.leading-loose {
+  line-height: 2;
+}
+
+.tracking-tight {
+  letter-spacing: -0.015em;
+}
+
+.tracking-normal {
+  letter-spacing: 0;
+}
+
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+
+/* Button & Card Patterns */
+/* .btn {
+ 
+} */
+
+.btn-primary {
+  background-color: var(--color-brand-dark);
+  color: var(--color-foreground-light);
+}
+.dark .btn-primary {
+  background-color: var(--color-brand-light);
+  color: var(--color-foreground-dark);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-muted-light);
+  color: var(--color-foreground-dark);
+}
+.dark .btn-outline {
+  border: 1px solid var(--color-muted-dark);
+  color: var(--color-foreground-light);
+}
