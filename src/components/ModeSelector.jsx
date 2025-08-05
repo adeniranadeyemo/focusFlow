@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import {
-  setTimeAndMode,
   setActive,
   switchMode,
 } from '../features/timer/timerSlice';

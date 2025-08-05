@@ -11,7 +11,7 @@ const initialState = {
   mode: 'focus',
   active: '',
   isRunning: false,
-  timeLeft: getDefaultTime(storedMode), // 25 minutes
+  timeLeft: getDefaultTime(storedMode),
   session: 1,
   totalSessions: 4,
 };
@@ -35,7 +35,7 @@ const timerSlice = createSlice({
 
     resetTimer(state) {
       state.isRunning = false;
-      state.timeLeft = getDefaultTime(state.mode);
+      state.timeLeft = 25 * 60;
     },
 
     switchMode(state, action) {
