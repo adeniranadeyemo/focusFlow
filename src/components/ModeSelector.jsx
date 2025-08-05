@@ -1,26 +1,55 @@
 import { useState } from 'react';
+import {
+  setTimeAndMode,
+  setActive,
+  switchMode,
+} from '../features/timer/timerSlice';
 
-const Modes = ['Focus', 'Short Break', 'Long Break'];
+import { useDispatch, useSelector } from 'react-redux';
+
+const Modes = [
+  {
+    id: 'focus',
+    name: 'Focus',
+  },
+  {
+    id: 'shortBreak',
+    name: 'Short Break',
+  },
+  {
+    id: 'longBreak',
+    name: 'Long Break',
+  },
+];
 
 export default function ModeSelector() {
-  const [active, setActive] = useState(() => localStorage.getItem('mode') || 'Focus');
+  const dispatch = useDispatch();
+
+  const timeLeft = useSelector((state) => state?.timer?.timeLeft);
+
+  const active =
+    useSelector((state) => state?.timer?.active) ||
+    localStorage.getItem('mode');
 
   const handleSetActive = (mode) => {
-    setActive(mode);
-    localStorage.setItem('mode', mode);
+    dispatch(setActive(mode.id));
+    localStorage.setItem('mode', mode.id);
+
+    dispatch(switchMode(mode.id));
+    localStorage.setItem('timeLeft', timeLeft);
   };
 
   return (
     <div className="flex justify-center gap-4">
       {Modes.map((mode) => (
         <button
-          key={mode}
+          key={mode.id}
           onClick={() => handleSetActive(mode)}
           className={`px-4 py-2 rounded-full cursor-pointer 
-            ${active === mode ? 'tabs-active' : 'tabs'}
+            ${active === mode.id ? 'tabs-active' : 'tabs'}
           `}
         >
-          {mode}
+          {mode.name}
         </button>
       ))}
     </div>

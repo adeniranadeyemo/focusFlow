@@ -9,6 +9,7 @@ import TimerDisplay from './components/TimerDisplay';
 import TimerControls from './components/TimerControls';
 import SessionTracker from './components/SessionTracker';
 import Footer from './components/Footer';
+import TimerEngine from './components/TimerEngine';
 
 function App() {
   const headerRef = useRef(null);
@@ -24,8 +25,8 @@ function App() {
     }
   }, []);
 
-  console.log(headerRef);
-  console.log(headerHeight);
+  // console.log(headerRef);
+  // console.log(headerHeight);
 
   return (
     <div className="h-fit system-color flex flex-col justify-center">
@@ -34,7 +35,7 @@ function App() {
       </header>
 
       <main
-        className="flex float-end flex-col items-center gap-6 px-4 pb-8"
+        className="flex flex-col items-center gap-6 px-4 pb-8"
         style={{ paddingTop: `${headerHeight}px` }}
       >
         <TimerDisplay />
@@ -42,9 +43,11 @@ function App() {
         <TimerControls />
 
         <ModeSelector />
-
-        <Footer />
       </main>
+
+      <Footer />
+
+      <TimerEngine />
     </div>
   );
 }

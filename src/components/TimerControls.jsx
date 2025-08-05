@@ -1,20 +1,48 @@
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  startTimer,
+  pauseTimer,
+  resetTimer,
+  setActive,
+} from '../features/timer/timerSlice';
+import { GiPauseButton, GiPlayButton } from 'react-icons/gi';
+import { RiResetLeftFill } from 'react-icons/ri';
+
 export default function TimerControls() {
+  const dispatch = useDispatch();
+  const isRunning = useSelector((state) => state?.timer?.isRunning);
+
+  const reset = () => {
+    dispatch(resetTimer());
+    dispatch(setActive('focus'));
+
+    localStorage.setItem('mode', 'focus');
+  };
+
   return (
     <div className="flex justify-center gap-4 m-md">
-      <button className="btn-primary border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer">
-        Start
-      </button>
+      {isRunning ? (
+        <button
+          onClick={() => dispatch(pauseTimer())}
+          className="btn-primary border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer active:scale-95"
+        >
+          <GiPauseButton />
+        </button>
+      ) : (
+        <button
+          onClick={() => dispatch(startTimer())}
+          className="btn-primary border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer active:scale-95"
+        >
+          <GiPlayButton />
+        </button>
+      )}
 
-      {/* Pause Button (initially disabled) */}
       <button
-        className="btn-outline border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm opacity-50 cursor-not-allowed"
-        disabled
+        onClick={reset}
+        className="btn-outline border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer active:scale-95"
       >
-        Pause
-      </button>
-
-      <button className="btn-outline border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer">
-        Reset
+        {/* Reset */}
+        <RiResetLeftFill />
       </button>
     </div>
   );
