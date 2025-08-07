@@ -7,13 +7,24 @@ const getStoredMode = () => {
 
 const storedMode = getStoredMode();
 
+const defaultDurations = {
+  focus: 25 * 60,
+  shortBreak: 5 * 60,
+  longBreak: 15 * 60,
+};
+
+const storedDurations =
+  JSON.parse(localStorage.getItem('durations')) || defaultDurations;
+
 const initialState = {
-  mode: 'focus',
+  mode: storedMode,
   active: '',
   isRunning: false,
-  timeLeft: getDefaultTime(storedMode),
+  // timeLeft: getDefaultTime(storedMode),
+  timeLeft: storedDurations[storedMode],
   session: 1,
   totalSessions: 4,
+  durations: storedDurations,
 };
 
 const timerSlice = createSlice({
@@ -39,8 +50,10 @@ const timerSlice = createSlice({
     },
 
     switchMode(state, action) {
+      const newMode = action.payload;
       state.mode = action.payload;
-      state.timeLeft = getDefaultTime(action.payload);
+      // state.timeLeft = getDefaultTime(action.payload);
+      state.timeLeft = state.durations[newMode];
       localStorage.setItem('mode', action.payload);
     },
 
@@ -55,13 +68,27 @@ const timerSlice = createSlice({
       state.isRunning = false;
       state.timeLeft = getDefaultTime(state.mode);
     },
+
+    updateDurations(state, action) {
+      state.durations = {
+        ...state.durations,
+        ...action.payload,
+      };
+
+      const currentMode = state.mode;
+      if (action.payload[currentMode]) {
+        state.timeLeft = action.payload[currentMode];
+      }
+
+      localStorage.setItem('durations', JSON.stringify(state.durations))
+    },
   },
 });
 
 export function getDefaultTime(mode) {
   switch (mode) {
     case 'shortBreak':
-      return 5 * 60;
+      return 1 * 2;
     case 'longBreak':
       return 15 * 60;
     default:
@@ -78,5 +105,6 @@ export const {
   tick,
   nextSession,
   setTimeAndMode,
+  updateDurations
 } = timerSlice.actions;
 export const timerReducer = timerSlice.reducer;

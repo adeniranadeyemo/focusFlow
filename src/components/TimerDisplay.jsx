@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 
 function TimerDisplay() {
+  const mode = useSelector((state) => state?.timer?.mode);
+
   const progress = 0.25;
 
   const radius = 100;
@@ -51,7 +53,11 @@ function TimerDisplay() {
           {formatTime(timeLeft)}
         </h2>
         <p className="text-sm text-color-muted tracking-wide mt-sm font-medium uppercase">
-          Focus Session
+          {mode === 'focus'
+            ? 'Focus Session'
+            : mode === 'shortBreak'
+            ? 'Short Break'
+            : 'Long Break'}
         </p>
       </div>
     </div>

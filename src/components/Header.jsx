@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import ToggleThemeButton from './ui/ToggleThemeButton';
+import SettingsModal from './SettingsModal';
+import { MdSettingsApplications } from 'react-icons/md';
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="flex items-center justify-between w-full max-w-4xl mx-auto py-4 px-6 system-color2 fixed z-10">
       <h1 className="text-2xl font-bold text-color-brand">FocusFlow 🧠</h1>
@@ -9,7 +14,17 @@ function Header() {
         Stay focused. Beat the clock. ⏱️
       </p>
 
-      <ToggleThemeButton />
+      <div>
+        <ToggleThemeButton />
+        <button
+          className="cursor-pointer h-8 w-8 text-color"
+          onClick={() => setIsOpen(true)}
+        >
+          <MdSettingsApplications className="h-8 w-8" />
+        </button>
+      </div>
+
+      <SettingsModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }

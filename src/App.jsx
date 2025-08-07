@@ -1,6 +1,8 @@
 import './App.css';
 import './index.css';
 
+import { Toaster } from 'sonner';
+
 import { useEffect, useRef, useState } from 'react';
 
 import Header from './components/Header';
@@ -48,6 +50,7 @@ function App() {
       <Footer />
 
       <TimerEngine />
+      <Toaster richColors position="top-center" />
     </div>
   );
 }

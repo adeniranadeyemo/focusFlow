@@ -8,9 +8,17 @@ import {
 import { GiPauseButton, GiPlayButton } from 'react-icons/gi';
 import { RiResetLeftFill } from 'react-icons/ri';
 
+import useAudio from '../hooks/useAudio';
+
 export default function TimerControls() {
   const dispatch = useDispatch();
   const isRunning = useSelector((state) => state?.timer?.isRunning);
+  const { play } = useAudio('../assets/dingNotif.mp3');
+
+  const handleStart = () => {
+    play();
+    dispatch(startTimer());
+  };
 
   const reset = () => {
     dispatch(resetTimer());
@@ -30,7 +38,7 @@ export default function TimerControls() {
         </button>
       ) : (
         <button
-          onClick={() => dispatch(startTimer())}
+          onClick={handleStart}
           className="btn-primary border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer active:scale-95"
         >
           <GiPlayButton />
