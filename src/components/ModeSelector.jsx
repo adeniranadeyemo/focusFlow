@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   pauseTimer,
   setActive,
@@ -30,7 +31,7 @@ export default function ModeSelector() {
 
   const active = localStorage.getItem('mode') || stateActive;
 
-  const handleSetActive = (mode) => {
+  const handleSetBreak = (mode) => {
     dispatch(pauseTimer());
 
     dispatch(setActive(mode.id));
@@ -45,7 +46,7 @@ export default function ModeSelector() {
       {Modes.map((mode) => (
         <button
           key={mode.id}
-          onClick={() => handleSetActive(mode)}
+          onClick={() => handleSetBreak(mode)}
           className={`px-4 py-2 rounded-full cursor-pointer 
             ${active === mode.id ? 'tabs-active' : 'tabs'}
           `}

@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 function SessionTracker() {
-  const mode = useSelector(state => state?.timer?.mode);
-  const current = 0;
-  const total = useSelector(state => state?.timer?.totalSessions);
+  const mode = useSelector((state) => state?.timer?.mode);
+  const session = useSelector((state) => state?.timer?.session);
+  const total = useSelector((state) => state?.timer?.totalSessions);
 
   return (
     <div className="flex flex-col items-center mt-sm">
@@ -11,7 +11,7 @@ function SessionTracker() {
         {mode === 'focus' ? `${mode} session` : mode}
       </p>
       <p className="text-sm text-color font-semibold tracking-normal mt-xs">
-        Session {current} of {total}
+        Session {session} of {total}
       </p>
     </div>
   );

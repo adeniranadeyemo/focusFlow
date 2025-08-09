@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   tick,
@@ -11,9 +11,13 @@ import {
 import useAudio from '../hooks/useAudio';
 
 import { toast } from 'sonner';
+import BreakModal from './BreakModal';
 
 function TimerEngine() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const dispatch = useDispatch();
+
   const isRunning = useSelector((state) => state?.timer?.isRunning);
   const timeLeft = useSelector((state) => state?.timer?.timeLeft);
   const mode = useSelector((state) => state?.timer?.mode);
@@ -46,18 +50,24 @@ function TimerEngine() {
     }
 
     if (timeLeft === 0) {
-      dispatch(nextSession());
       dispatch(pauseTimer());
       triggerCelebration(mode);
 
-      dispatch(switchMode('focus'));
-      dispatch(setActive('focus'));
+      if (mode === 'focus') {
+        setIsOpen(() => true);
+      } else {
+        dispatch(switchMode('focus'));
+        dispatch(setActive('focus'));
+        dispatch(nextSession());
+      }
     }
 
     return () => clearInterval(interval);
   }, [timeLeft, isRunning, dispatch, mode, triggerCelebration]);
 
-  return null;
+  return (
+    <BreakModal isOpen={isOpen} onClose={() => setIsOpen(false)}></BreakModal>
+  );
 }
 
 export default TimerEngine;

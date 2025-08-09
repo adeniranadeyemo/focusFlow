@@ -95,12 +95,7 @@ const timerSlice = createSlice({
         }
       }
 
-      const allowedSettings = [
-        'totalSessions',
-        'theme',
-        'autoStart',
-        'timeLeft',
-      ];
+      const allowedSettings = ['theme', 'autoStart', 'timeLeft', 'session'];
       const otherSettings = {};
 
       allowedSettings.forEach((key) => {
