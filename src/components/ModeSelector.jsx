@@ -1,4 +1,5 @@
 import {
+  pauseTimer,
   setActive,
   switchMode,
 } from '../features/timer/timerSlice';
@@ -25,11 +26,13 @@ export default function ModeSelector() {
 
   const timeLeft = useSelector((state) => state?.timer?.timeLeft);
 
-  const active =
-    useSelector((state) => state?.timer?.active) ||
-    localStorage.getItem('mode');
+  const stateActive = useSelector((state) => state?.timer?.active);
+
+  const active = localStorage.getItem('mode') || stateActive;
 
   const handleSetActive = (mode) => {
+    dispatch(pauseTimer());
+
     dispatch(setActive(mode.id));
     localStorage.setItem('mode', mode.id);
 

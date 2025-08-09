@@ -4,6 +4,7 @@ import {
   pauseTimer,
   resetTimer,
   setActive,
+  switchMode,
 } from '../features/timer/timerSlice';
 import { GiPauseButton, GiPlayButton } from 'react-icons/gi';
 import { RiResetLeftFill } from 'react-icons/ri';
@@ -21,8 +22,9 @@ export default function TimerControls() {
   };
 
   const reset = () => {
-    dispatch(resetTimer());
+    dispatch(switchMode('focus'));
     dispatch(setActive('focus'));
+    dispatch(resetTimer());
 
     localStorage.setItem('mode', 'focus');
   };

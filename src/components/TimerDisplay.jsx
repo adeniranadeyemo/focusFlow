@@ -5,7 +5,7 @@ function TimerDisplay() {
 
   const progress = 0.25;
 
-  const radius = 100;
+  const radius = 105;
   const stroke = 10;
   const normalizedRadius = radius - stroke * 0.05;
   const circumference = normalizedRadius * 2 * Math.PI;
@@ -14,11 +14,22 @@ function TimerDisplay() {
   const timeLeft = useSelector((state) => state?.timer?.timeLeft);
 
   const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const mins =
+      seconds >= 3600
+        ? Math.floor((seconds % 3600) / 60)
+        : Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs
-      .toString()
-      .padStart(2, '0')}`;
+
+    if (hours > 0) {
+      return `${hours.toString().padStart(2, '0')}:${mins
+        .toString()
+        .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    } else {
+      return `${mins.toString().padStart(2, '0')}:${secs
+        .toString()
+        .padStart(2, '0')}`;
+    }
   };
 
   return (
@@ -49,7 +60,7 @@ function TimerDisplay() {
       </svg>
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <h2 className="text-5xl text-color font-bold tracking-widest leading-tight font-sans">
+        <h2 className="text-4xl text-color font-bold tracking-widest leading-tight font-sans">
           {formatTime(timeLeft)}
         </h2>
         <p className="text-sm text-color-muted tracking-wide mt-sm font-medium uppercase">

@@ -50,6 +50,7 @@
 }
 .dark .system-color2 {
   background-color: var(--color-foreground-dark);
+  /* display: grid; */
 }
 
 .text-color {
