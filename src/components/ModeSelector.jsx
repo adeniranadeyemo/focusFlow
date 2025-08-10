@@ -25,20 +25,14 @@ const Modes = [
 export default function ModeSelector() {
   const dispatch = useDispatch();
 
-  const timeLeft = useSelector((state) => state?.timer?.timeLeft);
-
   const stateActive = useSelector((state) => state?.timer?.active);
 
   const active = localStorage.getItem('mode') || stateActive;
 
   const handleSetBreak = (mode) => {
     dispatch(pauseTimer());
-
     dispatch(setActive(mode.id));
-    localStorage.setItem('mode', mode.id);
-
     dispatch(switchMode(mode.id));
-    localStorage.setItem('timeLeft', timeLeft);
   };
 
   return (

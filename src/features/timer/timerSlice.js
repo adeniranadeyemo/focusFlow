@@ -28,7 +28,7 @@ const initialState = {
   active: storedMode,
   isRunning: false,
   timeLeft: durationFromStorage[storedMode],
-  session: 1,
+  session: 4,
 };
 
 const timerSlice = createSlice({
@@ -60,6 +60,7 @@ const timerSlice = createSlice({
 
       state.timeLeft = state.durations[newMode];
       localStorage.setItem('mode', action.payload);
+      localStorage.setItem('timeLeft', state.timeLeft);
     },
 
     tick(state) {
@@ -72,6 +73,10 @@ const timerSlice = createSlice({
       state.session += 1;
       state.isRunning = false;
       state.timeLeft = state.durations[state.mode];
+    },
+
+    resetSession(state) {
+      state.session = 1;
     },
 
     updateSettings(state, action) {
@@ -141,7 +146,7 @@ export const {
   switchMode,
   tick,
   nextSession,
-  setTimeAndMode,
+  resetSession,
   updateSettings,
 } = timerSlice.actions;
 export const timerReducer = timerSlice.reducer;

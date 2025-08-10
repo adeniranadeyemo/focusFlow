@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from './ui/Modal';
 import {
   pauseTimer,
-  setActive,
+  startTimer,
   switchMode,
 } from '../features/timer/timerSlice';
 
@@ -23,12 +23,13 @@ function BreakModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
 
   const handleSetBreak = (mode) => {
-    dispatch(pauseTimer());
+    // dispatch(pauseTimer());
 
-    localStorage.setItem('mode', mode.id);
-
+    // localStorage.setItem('mode', mode.id);
     dispatch(switchMode(mode.id));
-    localStorage.setItem('timeLeft', timeLeft);
+
+    dispatch(startTimer());
+    // localStorage.setItem('timeLeft', timeLeft);
 
     onClose();
   };
