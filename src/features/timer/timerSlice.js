@@ -28,7 +28,7 @@ const initialState = {
   active: storedMode,
   isRunning: false,
   timeLeft: durationFromStorage[storedMode],
-  session: 4,
+  session: 1,
 };
 
 const timerSlice = createSlice({

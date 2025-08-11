@@ -46,7 +46,7 @@ function Modal({ children, isOpen, onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
-        className="fixed inset-0 bg-gray-700 opacity-90 cursor-pointer -z-10"
+        className="fixed inset-0 glass cursor-pointer -z-10"
         onClick={onClose}
       ></div>
       <div

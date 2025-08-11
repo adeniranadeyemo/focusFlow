@@ -13,14 +13,11 @@ function DoneModal({ isDone, onClose }) {
 
   const handleRestart = () => {
     dispatch(
-      updateSettings(
-        {
-          focus: 25 * 60,
-          shortBreak: 5 * 60,
-          longBreak: 10 * 60,
-        },
-        (session = 0)
-      )
+      updateSettings({
+        focus: 25 * 60,
+        shortBreak: 5 * 60,
+        longBreak: 10 * 60,
+      })
     );
 
     dispatch(switchMode('focus'));
@@ -32,7 +29,7 @@ function DoneModal({ isDone, onClose }) {
   if (!isDone) return;
 
   return (
-    <Modal isOpen={isDone} onClose={onClose}>
+    <Modal isOpen={isDone}>
       <div className="text-center">
         <h3>Congratulations! Four ({session}) sessions completed. </h3>
         <p>Click 'Restart' to restart focus sessions!</p>

@@ -296,10 +296,6 @@
   color: var(--color-foreground-light);
   /* color: var(--color-foreground-dark); */
 }
-/* .dark .btn-primary {
-  background-color: var(--color-brand-light);
-  color: var(--color-foreground-light);
-} */
 
 .btn-outline {
   border: 1px solid var(--color-muted-light);
@@ -308,4 +304,81 @@
 .dark .btn-outline {
   border: 1px solid var(--color-muted-dark);
   color: var(--color-foreground-light);
+}
+
+@keyframes tickPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.timer-text {
+  animation: tickPulse 0.3s ease;
+}
+
+@keyframes ringPulse {
+  0% {
+    stroke-width: 10;
+    filter: drop-shadow(0 0 4px red);
+  }
+  50% {
+    stroke-width: 14;
+    filter: drop-shadow(0 0 8px red);
+  }
+  100% {
+    stroke-width: 10;
+    filter: drop-shadow(0 0 4px red);
+  }
+}
+.ring-alert {
+  animation: ringPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+.shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
