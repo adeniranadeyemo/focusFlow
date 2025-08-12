@@ -73,8 +73,8 @@ function TimerDisplay() {
             mode === 'focus'
               ? 'var(--color-brand-light)'
               : mode === 'shortBreak'
-              ? '#4ade80' // green
-              : '#60a5fa' // blue
+              ? '#4ade80'
+              : '#60a5fa'
           }
           className={` transition-all duration-500 ${
             isFinalCountdown ? 'ring-alert' : ''

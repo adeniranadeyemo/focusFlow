@@ -10,20 +10,23 @@ function Footer() {
     'Your future is created by what you do today.',
     'Small progress is still progress.',
     'Small consistent steps beat short bursts of intensity.',
-    'Ija wa, ija o si, always guiding',
-    'Focus on God',
+    'Ija wa, ija o si, always guiding.',
+    'Focus on God.',
+    'Beautiful are the feet of the righteous.',
+    'We suffer more in imagination than in reality.',
+    'Enough talk about who a good man should be. Be one!',
   ];
 
-  function useRotatingQuote(mode) {
+  const useRotatingQuote = (mode) => {
     const [quote, setQuote] = useState('');
 
     useEffect(() => {
       const newQuote = quotes[Math.floor(Math.random() * quotes.length)];
       setQuote(newQuote);
-    }, [mode]); // change quote on mode change
+    }, [mode]);
 
     return quote;
-  }
+  };
 
   const text = useRotatingQuote(mode);
 

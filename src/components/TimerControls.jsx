@@ -51,7 +51,6 @@ export default function TimerControls() {
         onClick={reset}
         className="btn-outline border-radius-lg p-md shadow-card shadow-hover shadow-active font-semibold text-sm cursor-pointer active:scale-95"
       >
-        {/* Reset */}
         <RiResetLeftFill />
       </button>
     </div>
