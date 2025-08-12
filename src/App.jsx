@@ -20,6 +20,7 @@ import {
   switchMode,
   setActive,
 } from './features/timer/timerSlice';
+// import PwaUpdateHandler from './components/PwaUpdateHandler';
 
 function App() {
   const headerRef = useRef(null);
@@ -97,6 +98,8 @@ function App() {
 
       <TimerEngine />
       <Toaster richColors position="top-center" />
+
+      {/* <PwaUpdateHandler /> */}
     </div>
   );
 }

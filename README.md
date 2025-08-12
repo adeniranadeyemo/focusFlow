@@ -1,12 +1,59 @@
-# React + Vite
+# Pomodoro Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, customizable Pomodoro timer built with **React** and **Redux**,
+featuring animated progress rings, modals for session control, and support for
+personalized durations.
 
-Currently, two official plugins are available:
+Designed for focus, flexibility, and a touch of style.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Custom Durations** — Set your own Focus, Short Break, and Long Break times
+- **Smart Formatting** — Automatically shows hours if a duration exceeds 60
+  minutes
+- **Animated Progress Ring** — Smooth visual countdown animation
+- **End-of-Session Prompt** — Choose between short or long breaks when a focus
+  session ends
+- **Reusable Modals** — Same modal component for settings and break prompts
+- **Keyboard Shortcuts** — Quickly control the timer without the mouse
+  (Space-bar to start the timer, 'r' to reset.)
+- **Quote Rotation** — Stay inspired with rotating focus quotes
+- **LocalStorage Sync** — Your settings persist between sessions
+- **Responsive Design** — Works across desktop, tablet, and mobile.
+
+---
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/adeniranadeyemo/focusFlow.git
+
+# Enter the project directory
+cd focusFlow
+
+# Install dependencies
+npm install
+```
+Usage
+# Start the development server
+npm start
+
+# Create a production build
+npm run build
+
+# Tech Stack
+React — UI library
+Redux Toolkit — State management
+TailwindCSS — Styling
+JavaScript (ES6+) — Core language
+LocalStorage API — Persistent settings
+
+# Future Plans
+Analytics Mode — Track your daily focus stats
+PWA Support — Installable and offline-capable
+Sound Library — Choose your alert tone
+
+# I kept it **developer-friendly** so anyone cloning it can get running instantly, while also showing off all the work you put in.  
