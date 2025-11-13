@@ -1,21 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 const getStoredMode = () => {
-  const mode = localStorage.getItem('mode');
-  return mode || 'focus';
-};
+  const mode = localStorage.getItem('mode')
+  return mode || 'focus'
+}
 
-const storedMode = getStoredMode();
+const storedMode = getStoredMode()
 
-export const savedSettings = JSON.parse(localStorage.getItem('settings'));
+export const savedSettings = JSON.parse(localStorage.getItem('settings'))
 
 const defaultDurations = {
   focus: 25 * 60,
   shortBreak: 5 * 60,
   longBreak: 10 * 60,
-};
+}
 
-const durationFromStorage = savedSettings?.durations || defaultDurations;
+const durationFromStorage = savedSettings?.durations || defaultDurations
 
 const initialState = {
   ...savedSettings,
@@ -29,7 +29,7 @@ const initialState = {
   isRunning: false,
   timeLeft: durationFromStorage[storedMode],
   session: 1,
-};
+}
 
 const timerSlice = createSlice({
   name: 'timer',
@@ -37,85 +37,85 @@ const timerSlice = createSlice({
 
   reducers: {
     setActive: (state, action) => {
-      state.active = action.payload;
+      state.active = action.payload
     },
 
     startTimer(state) {
-      state.isRunning = true;
+      state.isRunning = true
     },
 
     pauseTimer(state) {
-      state.isRunning = false;
+      state.isRunning = false
     },
 
     resetTimer(state) {
-      state.isRunning = false;
+      state.isRunning = false
 
-      state.mode = 'focus';
+      state.mode = 'focus'
     },
 
     switchMode(state, action) {
-      const newMode = action.payload;
-      state.mode = action.payload;
+      const newMode = action.payload
+      state.mode = action.payload
 
-      state.timeLeft = state.durations[newMode];
-      localStorage.setItem('mode', action.payload);
-      localStorage.setItem('timeLeft', state.timeLeft);
+      state.timeLeft = state.durations[newMode]
+      localStorage.setItem('mode', action.payload)
+      localStorage.setItem('timeLeft', state.timeLeft)
     },
 
     tick(state) {
       if (state.timeLeft > 0) {
-        state.timeLeft -= 1;
+        state.timeLeft -= 1
       }
     },
 
     nextSession(state) {
-      state.session += 1;
-      state.isRunning = false;
-      state.timeLeft = state.durations[state.mode];
+      state.session += 1
+      state.isRunning = false
+      state.timeLeft = state.durations[state.mode]
     },
 
     resetSession(state) {
-      state.session = 1;
+      state.session = 1
     },
 
     updateSettings(state, action) {
-      const payload = action.payload || {};
-      const durationKeys = ['focus', 'shortBreak', 'longBreak'];
+      const payload = action.payload || {}
+      const durationKeys = ['focus', 'shortBreak', 'longBreak']
 
-      let newDurations = { ...state.durations };
+      let newDurations = { ...state.durations }
 
       if (payload.durations && typeof payload.durations === 'object') {
-        newDurations = { ...newDurations, ...payload.durations };
+        newDurations = { ...newDurations, ...payload.durations }
         //
       } else {
-        const hasAnyDurationKey = durationKeys.some((key) => key in payload);
+        const hasAnyDurationKey = durationKeys.some((key) => key in payload)
 
         if (hasAnyDurationKey) {
           durationKeys.forEach((key) => {
             if (key in payload && payload[key] != null) {
-              newDurations[key] = payload[key];
+              newDurations[key] = payload[key]
             }
-          });
+          })
         }
       }
 
-      const allowedSettings = ['theme', 'autoStart', 'timeLeft', 'session'];
-      const otherSettings = {};
+      const allowedSettings = ['theme', 'autoStart', 'timeLeft', 'session']
+      const otherSettings = {}
 
       allowedSettings.forEach((key) => {
         if (key in payload) {
-          otherSettings[key] = payload[key];
-          state[key] = payload[key];
+          otherSettings[key] = payload[key]
+          state[key] = payload[key]
         }
-      });
+      })
 
-      state.durations = newDurations;
+      state.durations = newDurations
 
-      const currentMode = state.mode;
+      const currentMode = state.mode
       if (newDurations[currentMode] != null) {
         if (!state.isRunning) {
-          state.timeLeft = newDurations[currentMode];
+          state.timeLeft = newDurations[currentMode]
         }
       }
 
@@ -127,16 +127,16 @@ const timerSlice = createSlice({
       const settingsToSave = {
         durations: state.durations,
         ...allowedSettings.reduce((acc, key) => {
-          if (state[key] !== undefined) acc[key] = state[key];
-          return acc;
+          if (state[key] !== undefined) acc[key] = state[key]
+          return acc
         }, {}),
-      };
+      }
 
       // Object.assign(state, action.payload);
-      localStorage.setItem('settings', JSON.stringify(settingsToSave));
+      localStorage.setItem('settings', JSON.stringify(settingsToSave))
     },
   },
-});
+})
 
 export const {
   setActive,
@@ -148,5 +148,5 @@ export const {
   nextSession,
   resetSession,
   updateSettings,
-} = timerSlice.actions;
-export const timerReducer = timerSlice.reducer;
+} = timerSlice.actions
+export const timerReducer = timerSlice.reducer
